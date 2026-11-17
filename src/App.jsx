@@ -475,10 +475,10 @@ const App = () => {
           <div className="flex items-center gap-1.5 text-slate-400 font-mono text-[11px]">
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse"></span>
             <span className="font-bold text-slate-300">{formatTimer(timerSeconds)}</span>
-            <button onClick={() => setTimerActive(!timerActive)} className="hover:text-white text-slate-500 ml-1.5" title={timerActive ? "Pause Timer" : "Resume Timer"}>
+            <button onClick={() => setTimerActive(!timerActive)} className="hover:text-white text-slate-500 ml-1.5" title={timerActive ? "Pause Timer" : "Resume Timer"} aria-label={timerActive ? "Pause timer" : "Resume timer"}>
               {timerActive ? <Pause className="w-3 h-3" /> : <Play className="w-3 h-3" />}
             </button>
-            <button onClick={() => setTimerSeconds(0)} className="hover:text-white text-slate-500 ml-1" title="Reset Timer">
+            <button onClick={() => setTimerSeconds(0)} className="hover:text-white text-slate-500 ml-1" title="Reset Timer" aria-label="Reset timer">
               <RotateCcw className="w-3 h-3" />
             </button>
           </div>
@@ -503,6 +503,7 @@ const App = () => {
               onChange={(e) => handleJump(Number(e.target.value))}
               className="bg-transparent text-slate-400 font-mono text-xs border-none outline-none cursor-pointer hover:text-white select-none pr-1"
               title="Jump to Slide"
+              aria-label="Jump to slide"
             >
               {slideTitles.map((title, idx) => (
                 <option key={idx} value={idx + 1} className="bg-[#0b1220] text-slate-300">
@@ -528,6 +529,7 @@ const App = () => {
             onClick={handleScreenshot} 
             className="p-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-slate-400 hover:text-white"
             title="Take Slide Screenshot"
+            aria-label="Take slide screenshot"
           >
             <Camera className="w-4 h-4" />
           </button>
@@ -536,6 +538,7 @@ const App = () => {
             onClick={window.print} 
             className="p-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-slate-400 hover:text-white"
             title="Print Presentation (PDF)"
+            aria-label="Print presentation as PDF"
           >
             <Printer className="w-4 h-4" />
           </button>
@@ -544,6 +547,7 @@ const App = () => {
             onClick={handleDownloadPPTX} 
             className="px-2.5 py-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-slate-400 hover:text-white flex items-center gap-1.5 font-mono text-[10px]"
             title="Download PowerPoint File"
+            aria-label="Download PowerPoint file"
           >
             <Download className="w-4 h-4" />
             <span className="hidden lg:inline">Download PPT</span>
@@ -559,6 +563,8 @@ const App = () => {
                 viewMode === 'keynote' ? 'bg-blue-500 text-white font-bold' : 'hover:text-white text-slate-400'
               }`}
               title="Keynote Slide View"
+              aria-label="Keynote slide view"
+              aria-pressed={viewMode === 'keynote'}
             >
               <Monitor className="w-3.5 h-3.5" />
             </button>
@@ -568,6 +574,8 @@ const App = () => {
                 viewMode === 'speaker' ? 'bg-blue-500 text-white font-bold' : 'hover:text-white text-slate-400'
               }`}
               title="Speaker Notes Dashboard"
+              aria-label="Speaker notes dashboard"
+              aria-pressed={viewMode === 'speaker'}
             >
               <Layout className="w-3.5 h-3.5" />
             </button>
@@ -578,6 +586,7 @@ const App = () => {
             onClick={handleFullscreenToggle}
             className="p-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-slate-400 hover:text-white"
             title={isFullscreen ? "Exit Fullscreen (Esc)" : "Enter Fullscreen"}
+            aria-label={isFullscreen ? "Exit fullscreen" : "Enter fullscreen"}
           >
             {isFullscreen ? <Minimize2 className="w-4 h-4" /> : <Maximize2 className="w-4 h-4" />}
           </button>
@@ -586,6 +595,7 @@ const App = () => {
           <button 
             className="p-2 bg-slate-900 hover:bg-slate-800 border border-slate-800 rounded-lg text-slate-400 hover:text-white"
             title="Presentation Info"
+            aria-label="Presentation info"
             onClick={() => alert("Slide Caching: ENABLED / Aspect Ratio: 16:9 (1920x1080) / Scaling: " + scale.toFixed(2))}
           >
             <Settings className="w-4 h-4" />
